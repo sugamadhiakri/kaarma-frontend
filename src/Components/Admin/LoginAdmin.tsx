@@ -34,7 +34,7 @@ export const LoginAdmin = () => {
         onCompleted: ({ login }) => {
             localStorage.setItem("token", login);
             console.log(login);
-            navigate('panel');
+            navigate('../panel');
         }
     });
 
