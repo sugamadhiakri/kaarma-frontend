@@ -8,14 +8,21 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function App() {
 
-  const theme = createTheme();
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#2b939a',
+      },
+      secondary: {
+        main: '#f50057',
+      },
+    },
+  });
+
   return (
 
     <ThemeProvider theme={theme}>
       <div className="App">
-        <div>
-          <p>fyp</p>
-        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/organization/*" element={<Organization />} />

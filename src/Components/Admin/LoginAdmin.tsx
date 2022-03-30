@@ -26,15 +26,19 @@ export const LoginAdmin = () => {
         password: ''
     });
 
-    const [login] = useMutation(LOGIN_MUTATION, {
+    const [login, { error }] = useMutation(LOGIN_MUTATION, {
         variables: {
-            username: "admin",
-            password: "password"
+            username: formState.username,
+            password: formState.password
         },
-        onCompleted: ({ login }) => {
-            localStorage.setItem("token", login);
-            console.log(login);
+        onCompleted: ({ loginAdmin }) => {
+            localStorage.setItem("token", loginAdmin);
+            console.log(loginAdmin);
             navigate('../panel');
+        },
+        onError: (error) => {
+            console.log("username or password incorrect");
+            console.log(error);
         }
     });
 
