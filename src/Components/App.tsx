@@ -1,23 +1,12 @@
 
-import '../App.css';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { Home } from './Home/Home';
 import { Organization } from './Organization/Organization';
 import { Admin } from './Admin/Admin';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../theme';
 
 function App() {
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#2b939a',
-      },
-      secondary: {
-        main: '#f50057',
-      },
-    },
-  });
 
   return (
 
