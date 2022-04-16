@@ -1,6 +1,7 @@
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AdminHeader = () => {
     const pages = ["Submissions", "Organizations"];
@@ -8,6 +9,14 @@ export const AdminHeader = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
+
+    const navigate = useNavigate();
+
+
+    const HandleLogoutButtonClick = () => {
+        const t = localStorage.removeItem('token');
+        navigate("../login");
+    };
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -87,7 +96,7 @@ export const AdminHeader = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="contained" color="error">
+                        <Button variant="contained" color="error" onClick={() => HandleLogoutButtonClick()}>
                             Logout
                         </Button>
                     </Box>
