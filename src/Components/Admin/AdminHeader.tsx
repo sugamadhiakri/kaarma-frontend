@@ -1,13 +1,27 @@
 import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export const AdminHeader = () => {
+
+    const { setAuth }: any = useAuth();
+
     const pages = ["Submissions", "Organizations"];
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
+
+    const navigate = useNavigate();
+
+    const HandleLogout = () => {
+        setAuth({});
+        localStorage.removeItem("token");
+        console.log("logged out");
+        navigate("/login-admin");
+    };
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -87,7 +101,7 @@ export const AdminHeader = () => {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button variant="contained" color="error">
+                        <Button variant="contained" color="error" onClick={() => HandleLogout()}>
                             Logout
                         </Button>
                     </Box>

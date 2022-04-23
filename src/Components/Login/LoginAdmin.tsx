@@ -1,7 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
 import { Box, Button, Container, CssBaseline, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Location, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const LOGIN_MUTATION = gql`
 mutation Login (
@@ -13,20 +14,27 @@ mutation Login (
         password:$password
     ) 
 }
-`
+`;
 
 
 
 export const LoginAdmin = () => {
 
     const navigate = useNavigate();
+    const location: any = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const { auth, setAuth }: any = useAuth();
+
+    console.log("here");
+    console.log(auth);
+    console.log("here end");
 
     const [formState, setFormState] = useState({
         username: '',
         password: ''
     });
 
-    const [login, { error }] = useMutation(LOGIN_MUTATION, {
+    const [login] = useMutation(LOGIN_MUTATION, {
         variables: {
             username: formState.username,
             password: formState.password
@@ -34,7 +42,8 @@ export const LoginAdmin = () => {
         onCompleted: ({ loginAdmin }) => {
             localStorage.setItem("token", loginAdmin);
             console.log(loginAdmin);
-            navigate('../panel');
+            setAuth({ token: loginAdmin });
+            navigate("/admin/panel");
         },
         onError: (error) => {
             console.log("username or password incorrect");
@@ -92,5 +101,5 @@ export const LoginAdmin = () => {
                 </Box>
             </Box>
         </Container >
-    )
-}
+    );
+};

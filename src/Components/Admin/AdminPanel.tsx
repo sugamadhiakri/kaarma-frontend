@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client"
+import { gql, useQuery } from "@apollo/client";
 import { AppBar, Box, Button, Card, CardActions, CardContent, Container, Typography } from "@mui/material";
 import { useState } from "react";
 import { AdminHeader } from "./AdminHeader";
@@ -59,10 +59,10 @@ export const AdminPanel = () => {
                                     <Button variant='outlined' size="small" color="error">Delete</Button>
                                 </CardActions>
                             </Card>
-                        )
+                        );
                     })
                 }
             </Box>
         </Container >
-    )
-}
+    );
+};
