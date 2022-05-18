@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
-import { Assignment, EmojiEvents, EmojiPeople, EventBusy, ExpandMore, Festival, MoreVert, PeopleAlt, Event, LocationOn } from '@mui/icons-material';
-import { Avatar, Box, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, Grid, Icon, IconButton, List, ListItem, ListItemIcon, ListItemText, Modal, Typography } from '@mui/material';
-import { deepOrange, green, orange } from '@mui/material/colors';
+import { EmojiEvents, EmojiPeople, EventBusy, ExpandMore, Festival, MoreVert, PeopleAlt, Event, LocationOn } from '@mui/icons-material';
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, Icon, IconButton, List, ListItem, ListItemIcon, ListItemText, Modal, Typography } from '@mui/material';
+import GoogleMapReact from 'google-map-react';
+
 import React, { useState } from 'react';
 
 const StyledModal = styled(Modal)({
@@ -24,18 +25,25 @@ const location = {
     lng: 77.4977
 };
 
-const LocationPin = ({ text }: any) => (
-    <div className="pin">
-        <Icon>
-            <LocationOn />
-        </Icon>
-        <p className="pin-text">{text}</p>
-    </div>
+const LocationPin = (props: any) => (
+    <div className="pin"></div>
 );
 
 export const VolunteeringProgramme = () => {
 
+    const MAPS_API = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "";
+    console.log(MAPS_API);
+    console.log(process.env);
     const [open, setOpen] = useState(false);
+
+    const handleApiLoaded = (map: any, maps: any) => {
+        new maps.Marker({
+            position: location,
+            map,
+            title: "here"
+        });
+    };
+
     return (
         <Card sx={{
             margin: 5,
@@ -137,9 +145,9 @@ export const VolunteeringProgramme = () => {
                                         <Box mt={1} display="flex" flexDirection="row" justifyContent="space-between">
                                             <Box flex={3}>
                                                 <CardMedia
-                                                    // sx={{
-                                                    //     padding: 1,
-                                                    // }}
+                                                    sx={{
+                                                        padding: 1,
+                                                    }}
                                                     component="img"
                                                     height="300px"
                                                     image="https://nrcs.org/wp-content/uploads/2020/04/Hand-washing-place-installe-with-covid-19-awarness-mesage-at-Belaka-2.jpg"
@@ -217,26 +225,35 @@ export const VolunteeringProgramme = () => {
                                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi, quis. Officia ab, laboriosam veniam ea quia quos iusto repudiandae earum nostrum ex laborum cum reiciendis optio repellendus atque accusamus error?
                                             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil nemo consequatur, veritatis voluptates cum esse architecto. Ex harum magnam aliquam aperiam? Ea nihil natus deleniti quo itaque sapiente nulla cupiditate?
                                         </Typography>
-
-                                        {/* <Box height="500px" width="500px">
-                                            <GoogleMap
-                                                bootstrapURLKeys={{ key: '' }}
+                                        <Box height="500px" width="100%" marginTop={5}>
+                                            <GoogleMapReact
+                                                bootstrapURLKeys={{ key: MAPS_API, }}
                                                 defaultCenter={location}
-                                                defaultZoom={16}
-                                                key="AIzaSyBIMdDKchu4OO0MECtbSu3dcsf8FUmSW9g"
+                                                defaultZoom={15}
+                                                yesIWantToUseGoogleMapApiInternals={true}
+                                                onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
                                             >
-                                                <Marker position={location} />
-                                            </GoogleMap>
-                                        </Box> */}
-                                    </Box>
+                                                <LocationPin
+                                                    lat={location.lat}
+                                                    lng={location.lng}
+                                                    text={location.address}
+                                                />
+                                            </GoogleMapReact>
+                                        </Box>
 
+                                    </Box>
+                                    <Box display="flex" justifyContent="center" alignItems="center" marginTop={2}>
+                                        <Button variant='contained' size='large'>Apply</Button>
+                                    </Box>
                                 </Box>
                             </StyledModal>
                         </Box>
                     </Box>
-                </CardContent>
-            </Box>
-        </Card>
+                </CardContent >
+            </Box >
+        </Card >
 
     );
 };
+
+

@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { AttachFile, CameraAlt } from "@mui/icons-material";
 import { Box, Button, Container, CssBaseline, Divider, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
@@ -9,7 +10,6 @@ const useStyle = makeStyles({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-evenly",
         height: "100vh"
     },
 
@@ -84,16 +84,27 @@ export const SubmitOrganization = () => {
     return (
         <Box component="main" className={classes.outerContainer}>
 
-
+            <Box p={5} >
+                <Typography variant="h1" color="primary">KAARMA</Typography>
+            </Box>
 
             <Box className={classes.innerContainer}>
 
-                <Box flex={1} sx={{
+                <Box flex={5} sx={{
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-evenly",
                     alignItems: "center"
                 }}>
+                    <Box
+                        component="img"
+                        sx={{
+                            height: 'auto',
+                            width: "50%",
+                        }}
+                        alt="The house from the offer."
+                        src={require("../../static/organizationVector.svg").default}
+                    />
                     <Box sx={{
                         width: "60%"
                     }}>
@@ -120,11 +131,12 @@ export const SubmitOrganization = () => {
 
 
                 <Divider orientation="vertical" />
-                <Box flex={1} sx={{
+                <Box flex={4} sx={{
                     display: "flex",
                     justifyContent: "center"
-                }}>
-                    <Box width="65%">
+                }} display="flex" gap={2}>
+
+                    <Box width="50%">
                         <TextField
                             margin="normal"
                             required
@@ -154,6 +166,8 @@ export const SubmitOrganization = () => {
                                     email: e.target.value
                                 });
                             }}
+                            error
+                            helperText="Enter Valid Email"
                         />
                         <TextField
                             margin="normal"
@@ -169,7 +183,6 @@ export const SubmitOrganization = () => {
                                     address: e.target.value
                                 });
                             }}
-
                         />
                         <TextField
                             margin="normal"
@@ -201,12 +214,24 @@ export const SubmitOrganization = () => {
                                 });
                             }}
                         />
-                        <Button
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 3 }}
-                            onClick={() => submit()}
-                        >Submit</Button>
+                        <Box display="flex" gap={2}>
+                            <Button
+                                fullWidth
+                                variant="outlined"
+                                sx={{ mt: 3, mb: 3 }}
+                                onClick={() => submit()}
+                                endIcon={<CameraAlt />}
+                            >Upload Logo</Button>
+
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 3 }}
+                                onClick={() => submit()}
+                            >Submit</Button>
+
+
+                        </Box>
                     </Box>
 
                 </Box>

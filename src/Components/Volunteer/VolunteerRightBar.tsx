@@ -3,8 +3,8 @@ import React from 'react';
 
 export default function VolunteerRightBar() {
     return (
-        <Box flex={2} p={2} pt={5}>
-            <Box position="fixed">
+        <Box flex={2} p={2} pt={5} display="flex" justifyContent="center">
+            <Box position="fixed" alignItems="center">
                 <Typography variant="h6" fontWeight={300}>Activities</Typography>
 
                 <Box bgcolor="white" boxShadow={3}>

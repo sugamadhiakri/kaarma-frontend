@@ -1,8 +1,8 @@
-import { AccountBox, Bloodtype, CorporateFare, Home, Paid, VolunteerActivism } from '@mui/icons-material';
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, MenuItem } from '@mui/material';
+import { AccountBox, Bloodtype, CorporateFare, Paid, VolunteerActivism } from '@mui/icons-material';
+import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
 
-export default function VolunteerSideBar() {
+export const OrganizationSideBar = () => {
     return (
         <Box flex={1} p={2} pt={5}>
             <Box position="fixed" >
@@ -31,25 +31,9 @@ export default function VolunteerSideBar() {
                             <ListItemText primary="Fundraisers" />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <CorporateFare />
-                            </ListItemIcon>
-                            <ListItemText primary="Organizations" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemButton selected>
-                            <ListItemIcon>
-                                <Bloodtype />
-                            </ListItemIcon>
-                            <ListItemText primary="Get Blood" />
-                        </ListItemButton>
-                    </ListItem>
                 </List>
 
             </Box>
         </Box>
     );
-}
+};

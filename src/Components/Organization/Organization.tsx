@@ -1,13 +1,15 @@
-import { Route, Routes } from "react-router-dom";
-import RequireAuth from "../RequireAuth";
-import { LoginOrganization } from "../Login/LoginOrganization";
+import { Box, Stack } from "@mui/material";
 import { OrganizationFeed } from "./OrganizationFeed";
-import { SubmitOrganization } from "../Register/SubmitOrganization";
+import { OrganizationNavBar } from "./OrganizationNavBar";
+import { OrganizationSideBar } from "./OrganizationSideBar";
 
 export const Organization = () => (
-    <div>
-        <Routes>
-            <Route path="feed" element={<OrganizationFeed />} />
-        </Routes>
-    </div>
+    <Box>
+        <OrganizationNavBar />
+
+        <Stack direction="row" spacing={2} justifyContent="space-between">
+            <OrganizationSideBar />
+            <OrganizationFeed />
+        </Stack>
+    </Box>
 );

@@ -1,9 +1,7 @@
-import { AppBar, Toolbar, Typography, Box, InputBase, Badge, Avatar, Menu, MenuItem } from '@mui/material';
-import { styled } from '@mui/styles';
-import { theme } from '../../theme';
+import styled from '@emotion/styled';
+import { Notifications } from '@mui/icons-material';
+import { AppBar, Avatar, Badge, Box, InputBase, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Mail, Notifications } from '@mui/icons-material';
-
 
 const StyledToolbar = styled(Toolbar)({
     display: "flex",
@@ -22,15 +20,13 @@ const Icons = styled(Box)(({ theme }) => ({
     alignItems: "center",
     gap: "20px"
 }));
-
-export default function VolunteerNavBar() {
-
+export const OrganizationNavBar = () => {
     const [open, setOpen] = useState(false);
 
     return (
         <AppBar position="sticky">
             <StyledToolbar>
-                <Typography variant="h6">VOLUNTEER</Typography>
+                <Typography variant="h6">ORGANIZATION</Typography>
                 <Search><InputBase placeholder="Search" /></Search>
                 <Icons>
                     <Badge badgeContent={4} color="error">
@@ -56,9 +52,9 @@ export default function VolunteerNavBar() {
                 }}
                 onClose={() => setOpen(false)}
             >
-                <MenuItem >Profile</MenuItem>
+                <MenuItem>Profile</MenuItem>
                 <MenuItem>Log out</MenuItem>
             </Menu>
         </AppBar>
     );
-}
+};

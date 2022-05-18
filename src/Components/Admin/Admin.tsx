@@ -4,21 +4,21 @@ import { AdminPanel } from "./AdminPanel";
 
 export const Admin = () => {
 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
 
-    const navigate = useNavigate();
-    if (token) {
-        navigate("panel");
-    } else {
-        navigate("login");
-    }
+    // const navigate = useNavigate();
+    // if (token) {
+    //     navigate("panel");
+    // } else {
+    //     navigate("login");
+    // }
     return (
         <div>
             <Routes>
-                <Route element={<RequireAuth />}>
-                    <Route path="panel" element={<AdminPanel />} />
-                </Route>
+                {/* <Route element={<RequireAuth />}> */}
+                <Route path="panel" element={<AdminPanel />} />
+                {/* </Route> */}
             </Routes>
         </div>
     );

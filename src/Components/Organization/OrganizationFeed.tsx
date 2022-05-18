@@ -1,3 +1,13 @@
+import { Box } from '@mui/material';
+import React from 'react';
+
 export const OrganizationFeed = () => {
-    return (<h1>Organization feed lol</h1>);
+    return (
+        <Box flex={6} p={2}>
+            <Box>
+
+            </Box>
+        </Box>
+    );
 };
+

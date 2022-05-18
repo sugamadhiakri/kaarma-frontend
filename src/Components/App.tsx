@@ -40,11 +40,11 @@ function App() {
             <Route path="/register-volunteer" element={<RegisterVolunteer />} />
 
 
-            <Route element={<RequireAuth />}>
-              <Route path="/organization/*" element={<Organization />} />
-              <Route path="/admin/*" element={<Admin />} />
-              <Route path="/volunteer/*" element={<Volunteer />} />
-            </Route>
+            {/* <Route element={<RequireAuth />}> */}
+            <Route path="/organization/*" element={<Organization />} />
+            <Route path="/admin/*" element={<Admin />} />
+            <Route path="/volunteer/*" element={<Volunteer />} />
+            {/* </Route> */}
 
             <Route path="*" element={<NotFound />} />
           </Route>
